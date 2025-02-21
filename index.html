@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Analytics</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1f1c2c, #928dab);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        li {
+            margin: 0 15px;
+        }
+        a {
+            text-decoration: none;
+            color: #FFD700;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        a:hover {
+            color: #FF4500;
+        }
+        .page {
+            margin-top: 50px;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            width: 80%;
+            max-width: 600px;
+        }
+        button {
+            background: #FF4500;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #FFD700;
+            color: black;
+        }
+        input {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            width: 80%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="home.html" onclick="showPage('home')">Home</a></li>
+            <li><a href="analytic.html" onclick="showPage('analytics')">Analytics</a></li>
+            <li><a href="prediction.html" onclick="showPage('prediction')">Prediction</a></li>
+        </ul>
+        <button onclick="connectWallet()">Connect Wallet</button>
+    </nav>
+    
+    <section id="home" class="page">
+        <h1>Welcome to Predictive Analytics</h1>
+        <p>Navigate to different sections using the menu.</p>
+    </section>
+
+    <section id="analytics" class="page" style="display: none;">
+        <h1>Analytics Dashboard</h1>
+        <button onclick="fetchData()">Fetch Data</button>
+        <canvas id="chart"></canvas>
+    </section>
+
+    <section id="prediction" class="page" style="display: none;">
+        <h1>Submit Your Prediction</h1>
+        <input type="text" id="predictionInput" placeholder="Enter prediction">
+        <button onclick="submitPrediction()">Submit Prediction</button>
+    </section>
+    
+    <script>
+        async function connectWallet() {
+            if (window.ethereum) {
+                try {
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    alert("Wallet connected successfully!");
+                } catch (error) {
+                    console.error("Wallet connection failed", error);
+                }
+            } else {
+                alert("Please install MetaMask to connect your wallet.");
+            }
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
