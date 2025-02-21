@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction - Predictive Analytics Contract</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .prediction-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .prediction-header {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+      max-width: 600px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    
+    h1 {
+      font-size: 2.8em;
+      color: #f1c40f;
+      text-shadow: 2px 2px 10px rgba(241, 196, 15, 0.7);
+    }
+    
+    .form-container {
+      width: 80%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+      margin-top: 20px;
+    }
+    
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+    
+    input, select {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+    
+    button {
+      background: linear-gradient(90deg, #ff8c00, #ff0080);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0px 4px 15px rgba(255, 140, 0, 0.5);
+      margin-top: 20px;
+    }
+    
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0px 6px 20px rgba(255, 140, 0, 0.7);
+    }
+    
+    .back-button {
+      margin-top: 15px;
+    }
+    </style>
+</head>
+<body>
+    <div class="prediction-container">
+        <header class="prediction-header">
+            <h1>Submit Your Prediction</h1>
+            <p>Enter your forecast and let blockchain verify its accuracy.</p>
+        </header>
+        
+        <div class="form-container">
+            <label for="prediction">Prediction Type:</label>
+            <select id="prediction">
+                <option value="uptrend">Market Uptrend</option>
+                <option value="downtrend">Market Downtrend</option>
+                <option value="stable">Stable Market</option>
+            </select>
+            
+            <label for="confidence">Confidence Level (%):</label>
+            <input type="number" id="confidence" min="0" max="100" placeholder="Enter confidence level">
+            
+            <button onclick="submitPrediction()">🚀 Submit Prediction</button>
+        </div>
+        
+        <button class="back-button" onclick="goBack()">⬅ Back to Home</button>
+    </div>
+    
+    <script>
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+        
+        function submitPrediction() {
+            let predictionType = document.getElementById('prediction').value;
+            let confidenceLevel = document.getElementById('confidence').value;
+            
+            if (confidenceLevel === "" || confidenceLevel < 0 || confidenceLevel > 100) {
+                alert("Please enter a valid confidence level between 0 and 100.");
+                return;
+            }
+            
+            alert(`Prediction Submitted: ${predictionType} with ${confidenceLevel}% confidence.`);
+        }
+    </script>
+</body>
+</html>
